@@ -50,9 +50,9 @@ userSchema.pre('save', async function (next) {
 });
 
 // set '' after saving password
-userSchema.post('save', function (doc, next) {
-  doc.password = '';
-  next();
-});
+// userSchema.post('save', function (doc, next) {
+//   doc.password = '';
+//   next();
+// });
 
 export const User = model('User', userSchema);
