@@ -1,4 +1,4 @@
-import  bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 /* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from 'mongoose';
 import config from '../../config';
@@ -7,6 +7,13 @@ const addressSchema = new Schema({
   currentCity: { type: String, required: true },
   homeTown: { type: String, required: true },
   relationship: { type: String, required: true },
+});
+const followerSchema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+});
+
+const followingSchema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 const userSchema = new Schema(
@@ -21,8 +28,14 @@ const userSchema = new Schema(
     },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: false },
-    followers: { type: Number, default: 0 },
-    following: { type: Number, default: 0 },
+    followers: {
+      type: [followerSchema],
+      default: [],
+    },
+    following: {
+      type: [followingSchema],
+      default: [],
+    },
     profileImage: { type: String },
     bio: { type: String },
     address: { type: addressSchema },

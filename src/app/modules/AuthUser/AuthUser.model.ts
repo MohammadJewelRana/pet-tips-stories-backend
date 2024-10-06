@@ -5,7 +5,7 @@ import { UserStatus } from './AustUser.constant';
 
 const authUserSchema = new Schema<TAuthUser>(
   {
-    id: { type: Schema.Types.ObjectId },
+    id: { type: Schema.Types.ObjectId,ref:'Users' },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, select: 0 },
     passwordChangedAt: { type: Date },

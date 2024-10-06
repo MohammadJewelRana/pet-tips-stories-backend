@@ -1,7 +1,16 @@
+import { Types } from 'mongoose';
+
 export type Address = {
   currentCity: string;
   homeTown: string;
   relationship: string;
+};
+
+export type TFollower = {
+  followers: [{ userId: Types.ObjectId }];
+};
+export type TFollowing = {
+  following: [{ userId: Types.ObjectId }];
 };
 
 export type TUser = {
@@ -11,9 +20,10 @@ export type TUser = {
   gender: 'male' | 'female' | 'others';
   email: string;
   password: string;
-  followers?: number;
-  following?: number;
+  followers?: TFollower;
+  following?: TFollowing;
   profileImage?: string;
+  
   bio?: string;
   address?: Address;
   contactNumber?: string;
