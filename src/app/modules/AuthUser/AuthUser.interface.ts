@@ -10,3 +10,8 @@ export type TAuthUser = {
     isDeleted: boolean;
   };
   
+  export type TLoginUser = {
+    email: string;
+    password: string;
+  };
+  
